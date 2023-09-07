@@ -88,6 +88,10 @@ footer .social > a:hover {
   color: #0a71b8;
 }
 
+.even {
+  font-weight: bold;
+}
+
 @media screen and (max-width: 767px) {
   main > .container {
     margin: 0px auto 80px auto;
