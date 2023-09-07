@@ -7,9 +7,8 @@
   };
 
   function getValues() {
-    // Get startValue from the page.
+    // Get start and end values from the page.
     let startValue = document.getElementById('startValue').value;
-    // Get endValue from the page.
     let endValue = document.getElementById('endValue').value;
 
     // Convert the strings that come back to integers.
@@ -18,7 +17,7 @@
 
     // Check and verify that the strings are now in fact integers.
     if (Number.isInteger(startValue) && Number.isInteger(endValue)) {
-      // Call function generateNumbers with the returned values.
+      // Call function generateNumbers with the converted values and store the returned numbers in a variable.
       const numbers = generateNumbers(startValue, endValue);
 
       // Call function displayNumbers to display the returned array of numbers on the page.
@@ -31,7 +30,6 @@
     let numbers = [];
 
     // For-loop through the the range specified in the function getValues.
-    // We want to start the loop at startValue, and end at endValue, iterating over it one number at a time.
     for (let i = startValue; i <= endValue; i++) {
       // For each iteration, append the result to the array called numbers.
       numbers.push(i);
@@ -42,14 +40,13 @@
 
   function displayNumbers(numbers) {
     // Declare a variable called templateRows and set it to an empty string ''.
-    // This variable is used to insert a new row for the table.
     let templateRows = '';
+
+    // Declare a variable called className and set it to an empty string.
+    let className = '';
 
     // For-loop through numbers
     for (let i = 0; i < numbers.length; i++) {
-      // Declare a variable called className and set it to even.
-      let className = 'even';
-
       let number = numbers[i];
 
       // For each even number, set className to even, else set className to odd.
@@ -60,10 +57,10 @@
       }
 
       // Concatenate (+=) each iteration to the variable called templateRows using string interpolation.
-      // Use the following syntax: templateRows += `<tr><td class="${className}">${number}</td></tr>`;
       templateRows += `<tr><td class="${className}">${number}</td></tr>`;
     }
-    // Finally, display the results in the html page using getElementById.
+
+    // Finally, display the results in the html page.
     document.getElementById('results').innerHTML = templateRows;
   }
 })((window.app = window.app || {}));
