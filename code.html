@@ -89,7 +89,7 @@
     <main class="flex-shrink-0">
       <div class="container">
         <h2 class="border-1 border-bottom border-dark">
-          The Code for Benjamins is structured in XX functions.
+          The Code for Benjamins is structured in 3 functions.
         </h2>
         <div id="accordionItemOne" class="accordion mt-2">
           <div class="accordion-item bg-secondary-subtle">
@@ -102,7 +102,7 @@
                 aria-controls="accordionPanelOne"
                 class="accordion-button bg-dark text-light"
               >
-                Function Name #1
+                getValues()
               </button>
             </h3>
             <div
@@ -113,17 +113,64 @@
                 <div class="row row-cols-1 row-cols-md-2">
                   <div class="col col-md-8">
                     <pre data-start="1"><code class="language-javascript">
-                            // Call Hello World!
-                            function HelloWorld() {
-                                alert('Hello World!');
-                            }                                            
+                      function getValues() {
+                        // Get start and end values from the page.
+                        let startValue = document.getElementById('startValue').value;
+                        let endValue = document.getElementById('endValue').value;
+                    
+                        // Convert the strings that come back to integers.
+                        startValue = Number.parseInt(startValue);
+                        endValue = Number.parseInt(endValue);
+                    
+                        // Check and verify that the strings are now in fact integers.
+                        if (Number.isInteger(startValue) && Number.isInteger(endValue)) {
+                          // Call function generateNumbers with the converted values and store the
+                          // returned numbers in a variable.
+                          const numbers = generateNumbers(startValue, endValue);
+                    
+                          // Call function displayNumbers to display the returned array of numbers on the page.
+                          displayNumbers(numbers);
+                        }
+                      }                                           
                         </code></pre>
                   </div>
                   <div class="col col-md-4">
-                    <h5>HelloWorld()</h5>
+                    <h5>getValues()</h5>
                     <p>
-                      Hello World is a function that displays an alert with a
-                      message of "Hello World!"
+                      The function getValues() is responsible for getting the
+                      values from the user's input, these are the startValue and
+                      endValue variables specifically.
+                    </p>
+                    <p>
+                      Since the values we receive are returned as strings from
+                      the HTML, we have to parse them to integers, so we parse
+                      each value on it's own using the parseInt() function on
+                      the variable we declared and populated in the previous
+                      step.
+                    </p>
+                    <p>
+                      Next, in order to always know that we are working with
+                      integers, we check if <strong>both</strong> values are
+                      integers using the isInteger() function, and we only
+                      proceed if they both come back as true, which the && helps
+                      us with.
+                    </p>
+                    <p>
+                      If they are indeed both true, we continue with the final
+                      two steps, which will run in order: calling the
+                      generateNumbers() function with the start and end values
+                      as it's parameters and storing it's returned value(s) in a
+                      variable called numbers, and then finally, calling the
+                      displayNumbers() function with the numbers variable as a
+                      parameter in order to display the results on the page.
+                    </p>
+                    <p>
+                      You can find a description of the other two functions by
+                      clicking on the buttons below with the function name in
+                      order to open and read the description. For your ease of
+                      referencing back and forth, the other buttons once opened,
+                      will stay open until either a refresh is done, or closed
+                      manually.
                     </p>
                   </div>
                 </div>
@@ -142,7 +189,7 @@
                 aria-controls="accordionPanelTwo"
                 class="accordion-button bg-dark text-light"
               >
-                Function Name #2
+                generateNumbers()
               </button>
             </h3>
             <div id="accordionPanelTwo" class="accordion-collapse collapse">
@@ -150,17 +197,154 @@
                 <div class="row row-cols-1 row-cols-md-2">
                   <div class="col col-md-8">
                     <pre data-start="5"><code class="language-javascript">
-                            // Call Hello World!
-                            function HelloWorld() {
-                                alert('Hello World!');
-                            }                                            
+                      function generateNumbers(startValue, endValue) {
+                        // Declare an empty array called numbers
+                        let numbers = [];
+                    
+                        // For-loop through the the range specified in the function getValues.
+                        for (let i = startValue; i <= endValue; i++) {
+                          // For each iteration, append the result to the array called numbers.
+                          numbers.push(i);
+                        }
+                        // Finally return numbers.
+                        return numbers;
+                      }                                           
                         </code></pre>
                   </div>
                   <div class="col col-md-4">
-                    <h5>HelloWorld()</h5>
+                    <h5>generateNumbers()</h5>
                     <p>
-                      Hello World is a function that displays an alert with a
-                      message of "Hello World!"
+                      In the function generateNumbers() we take in two
+                      parameters inside the open and closing parenthesis. In our
+                      case they are the startValue and endValue, separated by a
+                      comma. <strong>Note</strong> that these parameters don't
+                      have to be named the same as the variables in the
+                      getValues() function, but this does help make it easier to
+                      read.
+                    </p>
+                    <p>
+                      Inside the function, we start by declaring an empty array
+                      to store our numbers. Here we've called it numbers.
+                    </p>
+                    <p>
+                      In order to generate an array of numbers from the
+                      startValue to the endValue, we use a for-loop. This loop
+                      uses an iterator (i) to store the new value on each
+                      iteration of the loop. It starts at 0 and will continue
+                      running as long as it's value is lower than
+                      <strong>or</strong> equal to the endValue, and the i++
+                      makes it so that it increments by 1 for every time it
+                      loops back around.
+                    </p>
+                    <p>
+                      For each iteration of the loop, we add the current value
+                      of i to our array using the push() function on the array.
+                    </p>
+                    <p>
+                      Finally, we return the complete array of numbers so that
+                      we can use this array in our displayNumbers() function.
+                      <strong>Note</strong> that this return statement happens
+                      outside the loop, after it is finished running.
+                    </p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div id="accordionItemThree" class="accordion mt-1">
+          <div class="accordion-item bg-secondary-subtle">
+            <h3 class="accordion-header">
+              <button
+                type="button"
+                data-bs-toggle="collapse"
+                data-bs-target="#accordionPanelThree"
+                aria-expanded="true"
+                aria-controls="accordionPanelThree"
+                class="accordion-button bg-dark text-light"
+              >
+                displayNumbers()
+              </button>
+            </h3>
+            <div id="accordionPanelThree" class="accordion-collapse collapse">
+              <div class="accordion-body">
+                <div class="row row-cols-1 row-cols-md-2">
+                  <div class="col col-md-8">
+                    <pre data-start="5"><code class="language-javascript">
+                      function displayNumbers(numbers) {
+                        // Declare a variable called templateRows and set it to an empty string ''.
+                        let templateRows = '';
+                    
+                        // Declare a variable called className and set it to an empty string.
+                        let className = '';
+                    
+                        // For-loop through numbers
+                        for (let i = 0; i < numbers.length; i++) {
+                          let number = numbers[i];
+                    
+                          // For each even number, set className to even, else set className to odd.
+                          if (number % 2 == 0) {
+                            className = 'even';
+                          } else {
+                            className = 'odd';
+                          }
+                    
+                          // Concatenate (+=) each iteration to the variable called templateRows
+                          // using string interpolation.
+                          templateRows += `&lt;tr>&lt;td class="${className}">${number}&lt;/td>&lt;/tr>`;
+                        }
+                    
+                        // Finally, display the results in the html page.
+                        document.getElementById('results').innerHTML = templateRows;
+                      }                                            
+                        </code></pre>
+                  </div>
+                  <div class="col col-md-4">
+                    <h5>displayNumbers()</h5>
+                    <p>
+                      The function displayNumbers() takes in the array of
+                      numbers that was returned from our previous function
+                      generateNumbers(), as a parameter. This will be used to
+                      iterate through in a for-loop in order to display the
+                      numbers on the page.
+                    </p>
+                    <p>
+                      Inside the function we start by declaring two empty string
+                      variables for use later, templateRows and className.
+                    </p>
+                    <p>
+                      Next up we have a for-loop that we start at 0 and iterate
+                      for the entire length of the numbers array. Like before,
+                      we will iterate one step at a time using i++.
+                    </p>
+                    <p>
+                      Inside the loop and for each iteration of of the loop we
+                      declare a new variable named number (singular) and store
+                      the current (i) number/iteration of the numbers array in
+                      this variable.
+                    </p>
+                    <p>
+                      Next we use the modulo operator (%) to check if the
+                      remainder of our number divided by 2, is equal to zero. If
+                      it is, we store a string called even in the className
+                      variable, if it isn't (if it has a remainder that isn't
+                      zero) we store a string called odd in the className
+                      variable. This will later help us to do some styling to
+                      the numbers if we want. For our purposes, we've created a
+                      css class that styles the numbers with the "even" class
+                      name as bold.
+                    </p>
+                    <p>
+                      After we've checked the number with the modulo operator,
+                      we use template literals to append to the variable
+                      templateRows, an HTML table row with a cell with the
+                      className relevant for that number, as well as the number
+                      itself inside the cell.
+                    </p>
+                    <p>
+                      Finally we append the templateRows variable to the
+                      innerHTML of the results ID of the page, so that it is
+                      stored inside the table.
                     </p>
                   </div>
                 </div>
